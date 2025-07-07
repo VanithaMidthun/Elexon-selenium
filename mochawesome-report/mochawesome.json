@@ -1,0 +1,395 @@
+{
+  "stats": {
+    "suites": 7,
+    "tests": 8,
+    "passes": 7,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-07-07T09:57:13.089Z",
+    "end": "2025-07-07T09:58:21.222Z",
+    "duration": 68133,
+    "testsRegistered": 8,
+    "passPercent": 87.5,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "1470c051-d762-463b-92d3-2107cc068c87",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [
+        {
+          "title": "\"before all\" hook in \"{root}\"",
+          "fullTitle": "\"before all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 3048,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "return __awaiter(this, void 0, void 0, function* () {\n    this.timeout(20000);\n    exports.driver = yield (0, browser_utils_1.buildFirefoxDriver)();\n    yield exports.driver.manage().window().maximize();\n    exports.bscPage = new BscPage_1.BscPage(exports.driver);\n    exports.searchPage = new BscSearchPage_page_1.BscSearchResultsPage(exports.driver);\n    exports.Panel = new FilterPanel_1.FilterPanel(exports.driver);\n    exports.Collect = new Collections_1.Collections(exports.driver);\n});",
+          "err": {},
+          "uuid": "b9b3e9af-5cb8-441f-ac2d-1bc7e65ec8cb",
+          "parentUUID": "1470c051-d762-463b-92d3-2107cc068c87",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [
+        {
+          "title": "\"after all\" hook in \"{root}\"",
+          "fullTitle": "\"after all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 1221,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "return __awaiter(this, void 0, void 0, function* () {\n    this.timeout(10000);\n    if (exports.driver) {\n        yield exports.driver.quit();\n    }\n});",
+          "err": {},
+          "uuid": "4a461609-a70c-4f45-ac72-52fe82355847",
+          "parentUUID": "1470c051-d762-463b-92d3-2107cc068c87",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1af55ead-5033-4834-94e2-4bf2319134b4",
+          "title": "Verify search option",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC_226590.ts",
+          "file": "\\test\\TC_226590.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should verify document search option behavior",
+              "fullTitle": "Verify search option should verify document search option behavior",
+              "timedOut": false,
+              "duration": 7083,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "__awaiter(this, void 0, void 0, function* () {\n        yield testSetup_1.bscPage.openHomePage();\n        yield testSetup_1.bscPage.clickCategoryByName(\"BSC\");\n        yield testSetup_1.bscPage.clickDocumentByName(\"BSC Section B: The Panel\");\n        yield testSetup_1.driver.wait(selenium_webdriver_1.until.elementLocated(testSetup_1.bscPage.documentSearchRadio), 10000);\n        const radio = yield testSetup_1.driver.findElement(testSetup_1.bscPage.documentSearchRadio);\n        yield testSetup_1.driver.wait(selenium_webdriver_1.until.elementIsVisible(radio), 5000);\n        const isSelected = yield radio.isSelected();\n        (0, chai_1.expect)(isSelected).to.be.true;\n        const placeholder = yield testSetup_1.bscPage.getSearchInputPlaceholder();\n        console.log(\"Actual placeholder text is :\", placeholder);\n        (0, chai_1.expect)(placeholder).to.equal(\"Search on this page\");\n        let isSearchBtnEnabled = yield testSetup_1.bscPage.isSearchButtonEnabled();\n        console.log(\"Is search button enabled? \", isSearchBtnEnabled);\n        (0, chai_1.expect)(isSearchBtnEnabled).to.be.false;\n        yield testSetup_1.bscPage.typeInSearchInput(\"test search\");\n        isSearchBtnEnabled = yield testSetup_1.bscPage.isSearchButtonEnabled();\n        console.log(\"Is search button enabled after typing? \", isSearchBtnEnabled);\n        (0, chai_1.expect)(isSearchBtnEnabled).to.be.true;\n    })",
+              "err": {},
+              "uuid": "2cfd8fd5-0f2f-4389-9838-6b51ff4f3c1f",
+              "parentUUID": "1af55ead-5033-4834-94e2-4bf2319134b4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2cfd8fd5-0f2f-4389-9838-6b51ff4f3c1f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7083,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 40000
+        },
+        {
+          "uuid": "48409374-bf4a-489e-a634-e590b45e98d3",
+          "title": "US_274978_TC_1: Verify doc listing page layout and filter panel display",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC_274978.ts",
+          "file": "\\test\\TC_274978.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should search and validate Role filter",
+              "fullTitle": "US_274978_TC_1: Verify doc listing page layout and filter panel display should search and validate Role filter",
+              "timedOut": false,
+              "duration": 5705,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "__awaiter(this, void 0, void 0, function* () {\n        yield testSetup_1.bscPage.openHomePage();\n        yield testSetup_1.bscPage.clickCategoryByName(\"Simple Guides\");\n        //console.log(\"clicked category\")\n        yield testSetup_2.Panel.waitForLeftPanel();\n        const isVisible = yield testSetup_2.Panel.isLeftPanelVisible();\n        (0, chai_1.expect)(isVisible).to.be.true;\n        const bgColor = yield testSetup_2.Panel.getLeftPanelBgColor();\n        console.log(\"Left panel background color:\", bgColor);\n        // Light gray: rgb(246, 245, 243) or similar\n        (0, chai_1.expect)(bgColor).to.include(\"rgb(246, 245, 243)\");\n        const headingsvisible = yield testSetup_2.Panel.headingsAreVisible();\n        console.log(\"headings visible\");\n        (0, chai_1.expect)(headingsvisible).to.be.true;\n        yield testSetup_2.Panel.expandImplementationSection();\n        const checkboxes = yield testSetup_2.Panel.getImplementationCheckboxes();\n        console.log(\"Checkbox count:\", checkboxes.length);\n        (0, chai_1.expect)(checkboxes.length).to.be.greaterThan(0);\n        const buttonsVisible = yield testSetup_2.Panel.filterButtonsAreVisible();\n        (0, chai_1.expect)(buttonsVisible).to.be.true;\n        console.log(\"Apply and clear filter buttons visible\");\n        // Validate initial state\n        (0, chai_1.expect)(yield testSetup_2.Panel.isCollapseButtonVisible()).to.be.true;\n        // Collapse and verify expand appears\n        yield testSetup_2.Panel.clickCollapseButton();\n        yield testSetup_1.driver.sleep(1000);\n        (0, chai_1.expect)(yield testSetup_2.Panel.isExpandButtonVisible()).to.be.true;\n        // Expand again and verify collapse reappears\n        yield testSetup_2.Panel.clickExpandButton();\n        yield testSetup_1.driver.sleep(1000);\n        (0, chai_1.expect)(yield testSetup_2.Panel.isCollapseButtonVisible()).to.be.true;\n    })",
+              "err": {},
+              "uuid": "0064f5d5-6e3f-4c87-bc5f-6cf29db3c156",
+              "parentUUID": "48409374-bf4a-489e-a634-e590b45e98d3",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "0064f5d5-6e3f-4c87-bc5f-6cf29db3c156"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5705,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        },
+        {
+          "uuid": "612f01d9-ccfb-4473-b581-cf0f07500bf5",
+          "title": "BSC Homepage Tile Verification",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC_Tileverification.ts",
+          "file": "\\test\\TC_Tileverification.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should show exactly 12 category tiles on the homepage",
+              "fullTitle": "BSC Homepage Tile Verification should show exactly 12 category tiles on the homepage",
+              "timedOut": false,
+              "duration": 2711,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "__awaiter(this, void 0, void 0, function* () {\n        yield testSetup_1.bscPage.openHomePage();\n        const tileCount = yield testSetup_1.bscPage.getCategoryTileCount();\n        console.log(\"Tile count:\", tileCount);\n        (0, chai_1.expect)(tileCount).to.equal(12, \"Expected exactly 12 category tiles\");\n    })",
+              "err": {},
+              "uuid": "f3488ca6-85e1-41e7-9240-b169624a22ed",
+              "parentUUID": "612f01d9-ccfb-4473-b581-cf0f07500bf5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should click each category tile and verify the title",
+              "fullTitle": "BSC Homepage Tile Verification should click each category tile and verify the title",
+              "timedOut": false,
+              "duration": 22622,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "__awaiter(this, void 0, void 0, function* () {\n        const tileElements = yield testSetup_1.bscPage.getCategoryTileElements();\n        for (let i = 0; i < tileElements.length; i++) {\n            const refreshedTiles = yield testSetup_1.bscPage.getCategoryTileElements(); // Avoid stale element\n            const tileText = yield testSetup_1.bscPage.getTileText(refreshedTiles[i]);\n            yield testSetup_1.bscPage.clickTile(refreshedTiles[i]);\n            yield testSetup_1.driver.sleep(1000);\n            const pageTitle = yield testSetup_1.bscPage.getLandingPageHeaderText();\n            console.log(`Tile Text: \"${tileText}\" | Page Title: \"${pageTitle}\"`);\n            (0, chai_1.expect)(tileText.trim().toLowerCase()).to.equal(pageTitle.trim().toLowerCase());\n            yield testSetup_1.bscPage.goBackToHomePage();\n        }\n    })",
+              "err": {},
+              "uuid": "8b956958-e879-4942-9763-0284bfad447e",
+              "parentUUID": "612f01d9-ccfb-4473-b581-cf0f07500bf5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f3488ca6-85e1-41e7-9240-b169624a22ed",
+            "8b956958-e879-4942-9763-0284bfad447e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 25333,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "3810917f-23b5-4c92-875c-89f30a18c999",
+          "title": "US 17875_TC_1: Verify 'Related Documents' display",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC1_17875.ts",
+          "file": "\\test\\TC1_17875.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should display Related Documents in the right-hand panel",
+              "fullTitle": "US 17875_TC_1: Verify 'Related Documents' display should display Related Documents in the right-hand panel",
+              "timedOut": false,
+              "duration": 6526,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "__awaiter(this, void 0, void 0, function* () {\n        yield testSetup_1.bscPage.openHomePage();\n        console.log(\"opened homepage\");\n        yield testSetup_1.bscPage.clickCategoryByName(\"Simple Guides\");\n        console.log(\"clicked category\");\n        yield testSetup_1.bscPage.clickDocumentByName(\"TC3\");\n        console.log(\"clicked doc\");\n        yield testSetup_1.driver.wait(selenium_webdriver_1.until.elementLocated(testSetup_1.bscPage.rightPanel), 10000);\n        console.log(\"Right panel is now visible\");\n        (0, chai_1.expect)(yield testSetup_1.bscPage.isRightPanelDisplayed()).to.be.true;\n        (0, chai_1.expect)(yield testSetup_1.bscPage.isRelatedDocumentsVisible()).to.be.true;\n        yield testSetup_1.bscPage.clickRelatedDocuments();\n        const bgColor = yield testSetup_1.bscPage.getRelatedDocumentsButtonBackground();\n        console.log(\"Background color of Related Documents button:\", bgColor);\n        (0, chai_1.expect)(bgColor).to.equal(\"rgb(33, 219, 173)\");\n    })",
+              "err": {},
+              "uuid": "7b7cad2f-30b4-47e3-92ac-20d173a1fa0e",
+              "parentUUID": "3810917f-23b5-4c92-875c-89f30a18c999",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7b7cad2f-30b4-47e3-92ac-20d173a1fa0e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6526,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "bb484483-5966-4014-b4ec-255008825b44",
+          "title": "Search and Role Filter Test",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC1_260639.ts",
+          "file": "\\test\\TC1_260639.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should search and validate Role filter",
+              "fullTitle": "Search and Role Filter Test should search and validate Role filter",
+              "timedOut": false,
+              "duration": 5533,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "__awaiter(this, void 0, void 0, function* () {\n        2;\n        yield testSetup_1.bscPage.openHomePage();\n        console.log(\"Opened homepage\");\n        yield testSetup_2.searchPage.waitForSearchBox(); // Ensure input is ready\n        console.log(\"Search box is visible\");\n        yield testSetup_2.searchPage.searchKeyword(\"energy\");\n        console.log(\"Keyword typed\");\n        yield testSetup_2.searchPage.clickFilterBy();\n        console.log(\"Clicked 'Filter by'\");\n        (0, chai_1.expect)(yield testSetup_2.searchPage.isRoleFilterVisible()).to.be.true;\n        const roleOptions = yield testSetup_2.searchPage.getRoleFilterOptions();\n        const sortedOptions = [...roleOptions].sort((a, b) => a.localeCompare(b));\n        (0, chai_1.expect)(roleOptions).to.deep.equal(sortedOptions);\n    })",
+              "err": {
+                "message": "ElementClickInterceptedError: Element <button class=\"b-accordion \"> is not clickable at point (1428,532) because another element <div class=\"Loading_c-loading__kQhvE\"> obscures it",
+                "estack": "ElementClickInterceptedError: Element <button class=\"b-accordion \"> is not clickable at point (1428,532) because another element <div class=\"Loading_c-loading__kQhvE\"> obscures it\n    at Object.throwDecodedError (node_modules\\selenium-webdriver\\lib\\error.js:523:15)\n    at parseHttpResponse (node_modules\\selenium-webdriver\\lib\\http.js:524:13)\n    at Executor.execute (node_modules\\selenium-webdriver\\lib\\http.js:456:28)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Driver.execute (node_modules\\selenium-webdriver\\lib\\webdriver.js:745:17)",
+                "diff": null
+              },
+              "uuid": "b681a419-9ff4-4aa2-9a56-dab33f4839b5",
+              "parentUUID": "bb484483-5966-4014-b4ec-255008825b44",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "b681a419-9ff4-4aa2-9a56-dab33f4839b5"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 5533,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 40000
+        },
+        {
+          "uuid": "6ea466a4-27ce-4eb9-a223-6693d32b7746",
+          "title": "Verify right hand functionality Collections",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC1_268254.ts",
+          "file": "\\test\\TC1_268254.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should validate navigation panel behavior",
+              "fullTitle": "Verify right hand functionality Collections should validate navigation panel behavior",
+              "timedOut": false,
+              "duration": 6514,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "__awaiter(this, void 0, void 0, function* () {\n        yield testSetup_1.bscPage.openHomePage();\n        yield testSetup_1.bscPage.clickCategoryByName(\"Simple Guides\");\n        //console.log(\"clicked category\")\n        const collectionsVisible = yield testSetup_2.Collect.isCollectionsHeadingVisible();\n        console.log(\"Collections heading visible\");\n        (0, chai_1.expect)(collectionsVisible).to.be.true;\n        yield testSetup_1.driver.sleep(3000);\n        const sidebarItems = yield testSetup_2.Collect.getSidebarCategories();\n        console.log(\"Sidebar items found:\", sidebarItems.length);\n        (0, chai_1.expect)(sidebarItems.length).to.be.greaterThan(0);\n        console.log(\"Sidebar contents:\", sidebarItems);\n        (0, chai_1.expect)(sidebarItems).to.not.include(\"Simple Guides\");\n    })",
+              "err": {},
+              "uuid": "a2bff7a3-e2dd-45f7-a94d-6590b034a657",
+              "parentUUID": "6ea466a4-27ce-4eb9-a223-6693d32b7746",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a2bff7a3-e2dd-45f7-a94d-6590b034a657"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6514,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "0842c15d-364f-41c9-8731-c46d1d6780be",
+          "title": "US_260638_TC2: Validate Document Type filter behavior",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC2_260638.ts",
+          "file": "\\test\\TC2_260638.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should search and validate Document Type filter",
+              "fullTitle": "US_260638_TC2: Validate Document Type filter behavior should search and validate Document Type filter",
+              "timedOut": false,
+              "duration": 7147,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "__awaiter(this, void 0, void 0, function* () {\n        yield testSetup_1.bscPage.openHomePage();\n        console.log(\"Opened homepage\");\n        yield testSetup_2.searchPage.waitForSearchBox(); // Ensure input is ready\n        console.log(\"Search box is visible\");\n        yield testSetup_2.searchPage.searchKeyword(\"energy\");\n        console.log(\"Keyword typed\");\n        yield testSetup_2.searchPage.clickFilterBy();\n        console.log(\"Clicked 'Filter by'\");\n        const isHeadingVisible = yield testSetup_2.searchPage.isDocTypeVisible();\n        console.log(\"heading visible\");\n        (0, chai_1.expect)(isHeadingVisible).to.be.true;\n        const isExpanded = yield testSetup_2.searchPage.isExpandButtonVisible();\n        (0, chai_1.expect)(isExpanded).to.be.true;\n        console.log(\"Document type filter expanded by default\");\n        const checkboxes = yield testSetup_2.searchPage.getCheckboxes();\n        console.log(\"checkbox count:\", checkboxes.length);\n        (0, chai_1.expect)(checkboxes.length).to.be.greaterThan(0);\n        yield testSetup_2.searchPage.clickCheckboxByIndex(0);\n        console.log(\"First checkbox selected\");\n        yield testSetup_2.searchPage.collapseFilter();\n        const isCollapsed = yield testSetup_2.searchPage.isFilterCollapsed();\n        console.log(\"Filter collapsed\");\n        (0, chai_1.expect)(isCollapsed).to.be.true;\n        yield testSetup_2.searchPage.expandFilter();\n        console.log(\"Reexpand doc type filter\");\n        /*const isSelectedAfter = await searchPage.isCheckboxSelected(0);\n        expect(isSelectedAfter).to.be.true;\n        console.log(\"checkbox still selected after expand\");*/\n    })",
+              "err": {},
+              "uuid": "a83755d1-17b8-43a2-97dc-93f7455e467d",
+              "parentUUID": "0842c15d-364f-41c9-8731-c46d1d6780be",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a83755d1-17b8-43a2-97dc-93f7455e467d"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7147,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.6.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
