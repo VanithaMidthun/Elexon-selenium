@@ -2,7 +2,7 @@
 import { expect } from "chai";
 import { until, WebElement } from "selenium-webdriver";
  
-describe("US_274978_TC_1: Verify doc listing page layout and filter panel display", function () {
+describe("@smoke US_274978_TC_1: Verify doc listing page layout and filter panel display", function () {
 //this.timeout(60000);
 
 it("should search and validate Role filter", async () => {

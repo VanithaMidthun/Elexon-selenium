@@ -12,13 +12,12 @@ import { Collections } from "../src/Pages/Collections";
 import { VideoRecorder } from "../src/utils/videoRecorder";
 import { Logger } from "../src/utils/logger";
  
- 
 import { frameworkConfig } from "../src/config/framework.config";
 import { envConfig } from "../src/config/env.config";
 import { browserConfig } from "../src/config/browser.config";
  
 /**
-* GLOBALS (one per worker)
+* GLOBALS (one per worker / test)
 */
 declare global {
   var driver: WebDriver;
@@ -44,32 +43,68 @@ let currentTestName = "";
 * Mocha 11 ROOT HOOKS
 */
 export const mochaHooks = {
- 
   async beforeEach(this: Mocha.Context) {
     // Apply retries (centralised)
     this.currentTest?.retries(frameworkConfig.retries);
  
     Logger.info(
-      `PID=${process.pid} | ENV=${process.env.ENV || "qa"} | BROWSER=${browserConfig.name} | TEST=${this.currentTest?.title}`
+      `PID=${process.pid} | ENV=${process.env.ENV || "qa"} | BROWSER=${
+        browserConfig.name
+      } | HEADLESS=${browserConfig.headless} | TEST=${
+        this.currentTest?.title
+      }`
     );
  
     const browser = resolveBrowser();
     let builder = new Builder().forBrowser(browser);
  
-    // Browser services
+    /**
+     * -------- Chrome --------
+     */
     if (browser === "chrome") {
+      const options = new chrome.Options();
+ 
+      if (browserConfig.headless) {
+        options.addArguments(
+          "--headless=new",
+          "--disable-gpu",
+          "--window-size=1920,1080"
+        );
+      }
+ 
+      builder.setChromeOptions(options);
       builder.setChromeService(
         new chrome.ServiceBuilder(`${process.cwd()}/drivers/chromedriver.exe`)
       );
     }
  
+    /**
+     * -------- Firefox --------
+     */
     if (browser === "firefox") {
+      const options = new firefox.Options();
+ 
+      if (browserConfig.headless) {
+        options.addArguments("-headless");
+      }
+ 
+      builder.setFirefoxOptions(options);
       builder.setFirefoxService(
         new firefox.ServiceBuilder(`${process.cwd()}/drivers/geckodriver.exe`)
       );
     }
  
+    /**
+     * -------- Edge --------
+     */
     if (browser === "MicrosoftEdge") {
+      const options = new edge.Options();
+ 
+      if (browserConfig.headless) {
+        options.addArguments("--headless=new", "--window-size=1920,1080");
+      }
+ 
+      builder.setEdgeOptions(options);
       builder.setEdgeService(
         new edge.ServiceBuilder(`${process.cwd()}/drivers/msedgedriver.exe`)
       );
@@ -135,89 +170,6 @@ export const mochaHooks = {
 };
  
 export {};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

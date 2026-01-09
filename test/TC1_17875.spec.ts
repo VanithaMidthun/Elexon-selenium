@@ -3,7 +3,7 @@ import { expect } from "chai";
 import { By, until } from "selenium-webdriver";
 
  
-describe("US 17875_TC_1: Verify 'Related Documents' display", function () {
+describe("@smoke US 17875_TC_1: Verify 'Related Documents' display", function () {
   //this.timeout(30000);
  
   it("should display Related Documents in the right-hand panel", async () => {

@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2026-01-09T12:08:20.855Z",
-    "end": "2026-01-09T12:08:42.247Z",
-    "duration": 21392,
+    "start": "2026-01-09T14:22:17.798Z",
+    "end": "2026-01-09T14:22:34.153Z",
+    "duration": 16355,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "6fd654d7-cdf5-46a6-8a16-cdf2c4a22640",
+      "uuid": "25e6ce1f-609a-45db-a7e4-32a62b2e4a2c",
       "title": "",
       "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC2_260638.spec.ts",
       "file": "\\test\\TC2_260638.spec.ts",
@@ -27,17 +27,17 @@
           "title": "\"before each\" hook: beforeEach in \"{root}\"",
           "fullTitle": "\"before each\" hook: beforeEach in \"{root}\"",
           "timedOut": false,
-          "duration": 2103,
+          "duration": 1314,
           "state": null,
           "speed": null,
           "pass": false,
           "fail": false,
           "pending": false,
           "context": null,
-          "code": "return __awaiter(this, void 0, void 0, function* () {\n    var _a, _b, _c;\n    // Apply retries (centralised)\n    (_a = this.currentTest) === null || _a === void 0 ? void 0 : _a.retries(framework_config_1.frameworkConfig.retries);\n    logger_1.Logger.info(`PID=${process.pid} | ENV=${process.env.ENV || \"qa\"} | BROWSER=${browser_config_1.browserConfig.name} | TEST=${(_b = this.currentTest) === null || _b === void 0 ? void 0 : _b.title}`);\n    const browser = resolveBrowser();\n    let builder = new selenium_webdriver_1.Builder().forBrowser(browser);\n    // Browser services\n    if (browser === \"chrome\") {\n        builder.setChromeService(new chrome_1.default.ServiceBuilder(`${process.cwd()}/drivers/chromedriver.exe`));\n    }\n    if (browser === \"firefox\") {\n        builder.setFirefoxService(new firefox_1.default.ServiceBuilder(`${process.cwd()}/drivers/geckodriver.exe`));\n    }\n    if (browser === \"MicrosoftEdge\") {\n        builder.setEdgeService(new edge_1.default.ServiceBuilder(`${process.cwd()}/drivers/msedgedriver.exe`));\n    }\n    // Build driver\n    global.driver = yield builder.build();\n    // Window & timeouts (centralised)\n    yield global.driver.manage().window().maximize();\n    yield global.driver.manage().setTimeouts({\n        implicit: 0,\n        pageLoad: framework_config_1.frameworkConfig.timeouts.pageLoad,\n        script: framework_config_1.frameworkConfig.timeouts.script\n    });\n    // Page objects (inject baseUrl)\n    global.bscPage = new BscPage_1.BscPage(global.driver, env_config_1.envConfig.baseUrl);\n    global.searchPage = new BscSearchPage_page_1.BscSearchResultsPage(global.driver);\n    global.Panel = new FilterPanel_1.FilterPanel(global.driver);\n    global.Collect = new Collections_1.Collections(global.driver);\n    // Ensure artifact folders exist\n    if (!fs_1.default.existsSync(\"screenshots\"))\n        fs_1.default.mkdirSync(\"screenshots\");\n    if (!fs_1.default.existsSync(\"videos\"))\n        fs_1.default.mkdirSync(\"videos\");\n    // Start video recording\n    recorder = new videoRecorder_1.VideoRecorder();\n    currentTestName =\n        ((_c = this.currentTest) === null || _c === void 0 ? void 0 : _c.title.replace(/[^a-zA-Z0-9]/g, \"_\")) || \"unknown_test\";\n    recorder.start(currentTestName, browser_config_1.browserConfig.name);\n});",
+          "code": "return __awaiter(this, void 0, void 0, function* () {\n    var _a, _b, _c;\n    // Apply retries (centralised)\n    (_a = this.currentTest) === null || _a === void 0 ? void 0 : _a.retries(framework_config_1.frameworkConfig.retries);\n    logger_1.Logger.info(`PID=${process.pid} | ENV=${process.env.ENV || \"qa\"} | BROWSER=${browser_config_1.browserConfig.name} | HEADLESS=${browser_config_1.browserConfig.headless} | TEST=${(_b = this.currentTest) === null || _b === void 0 ? void 0 : _b.title}`);\n    const browser = resolveBrowser();\n    let builder = new selenium_webdriver_1.Builder().forBrowser(browser);\n    /**\n     * -------- Chrome --------\n     */\n    if (browser === \"chrome\") {\n        const options = new chrome_1.default.Options();\n        if (browser_config_1.browserConfig.headless) {\n            options.addArguments(\"--headless=new\", \"--disable-gpu\", \"--window-size=1920,1080\");\n        }\n        builder.setChromeOptions(options);\n        builder.setChromeService(new chrome_1.default.ServiceBuilder(`${process.cwd()}/drivers/chromedriver.exe`));\n    }\n    /**\n     * -------- Firefox --------\n     */\n    if (browser === \"firefox\") {\n        const options = new firefox_1.default.Options();\n        if (browser_config_1.browserConfig.headless) {\n            options.addArguments(\"-headless\");\n        }\n        builder.setFirefoxOptions(options);\n        builder.setFirefoxService(new firefox_1.default.ServiceBuilder(`${process.cwd()}/drivers/geckodriver.exe`));\n    }\n    /**\n     * -------- Edge --------\n     */\n    if (browser === \"MicrosoftEdge\") {\n        const options = new edge_1.default.Options();\n        if (browser_config_1.browserConfig.headless) {\n            options.addArguments(\"--headless=new\", \"--window-size=1920,1080\");\n        }\n        builder.setEdgeOptions(options);\n        builder.setEdgeService(new edge_1.default.ServiceBuilder(`${process.cwd()}/drivers/msedgedriver.exe`));\n    }\n    // Build driver\n    global.driver = yield builder.build();\n    // Window & timeouts (centralised)\n    yield global.driver.manage().window().maximize();\n    yield global.driver.manage().setTimeouts({\n        implicit: 0,\n        pageLoad: framework_config_1.frameworkConfig.timeouts.pageLoad,\n        script: framework_config_1.frameworkConfig.timeouts.script\n    });\n    // Page objects (inject baseUrl)\n    global.bscPage = new BscPage_1.BscPage(global.driver, env_config_1.envConfig.baseUrl);\n    global.searchPage = new BscSearchPage_page_1.BscSearchResultsPage(global.driver);\n    global.Panel = new FilterPanel_1.FilterPanel(global.driver);\n    global.Collect = new Collections_1.Collections(global.driver);\n    // Ensure artifact folders exist\n    if (!fs_1.default.existsSync(\"screenshots\"))\n        fs_1.default.mkdirSync(\"screenshots\");\n    if (!fs_1.default.existsSync(\"videos\"))\n        fs_1.default.mkdirSync(\"videos\");\n    // Start video recording\n    recorder = new videoRecorder_1.VideoRecorder();\n    currentTestName =\n        ((_c = this.currentTest) === null || _c === void 0 ? void 0 : _c.title.replace(/[^a-zA-Z0-9]/g, \"_\")) || \"unknown_test\";\n    recorder.start(currentTestName, browser_config_1.browserConfig.name);\n});",
           "err": {},
-          "uuid": "7de79eab-06ee-46cc-a7aa-a0586c0f8cc9",
-          "parentUUID": "6fd654d7-cdf5-46a6-8a16-cdf2c4a22640",
+          "uuid": "9ddd7926-54ed-4241-bc69-51e4c2981cd4",
+          "parentUUID": "25e6ce1f-609a-45db-a7e4-32a62b2e4a2c",
           "isHook": true,
           "skipped": false
         }
@@ -47,7 +47,7 @@
           "title": "\"after each\" hook: afterEach in \"{root}\"",
           "fullTitle": "\"after each\" hook: afterEach in \"{root}\"",
           "timedOut": false,
-          "duration": 926,
+          "duration": 608,
           "state": null,
           "speed": null,
           "pass": false,
@@ -56,8 +56,8 @@
           "context": null,
           "code": "return __awaiter(this, void 0, void 0, function* () {\n    var _a, _b, _c, _d;\n    const failed = ((_a = this.currentTest) === null || _a === void 0 ? void 0 : _a.state) === \"failed\";\n    yield recorder.stop();\n    if (failed && global.driver) {\n        logger_1.Logger.error(`Test failed: ${(_b = this.currentTest) === null || _b === void 0 ? void 0 : _b.title}`);\n        const screenshot = yield global.driver.takeScreenshot();\n        fs_1.default.writeFileSync(`screenshots/${currentTestName}.png`, screenshot, \"base64\");\n    }\n    else {\n        // Delete video for passed tests\n        const vid = recorder.getVideoPath();\n        if (vid && fs_1.default.existsSync(vid))\n            fs_1.default.unlinkSync(vid);\n    }\n    if (global.driver) {\n        yield global.driver.quit();\n    }\n    logger_1.Logger.info(`Finished test: ${(_c = this.currentTest) === null || _c === void 0 ? void 0 : _c.title} → ${(_d = this.currentTest) === null || _d === void 0 ? void 0 : _d.state}`);\n});",
           "err": {},
-          "uuid": "0d90b884-1ab0-47e6-b7b1-6792ede1ebcf",
-          "parentUUID": "6fd654d7-cdf5-46a6-8a16-cdf2c4a22640",
+          "uuid": "2247a307-d3fc-426c-8c1c-5dbffd4905d2",
+          "parentUUID": "25e6ce1f-609a-45db-a7e4-32a62b2e4a2c",
           "isHook": true,
           "skipped": false
         }
@@ -65,7 +65,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "be0a4f3c-58f0-45d2-b598-ccb778ad72c6",
+          "uuid": "44ef674e-a5c8-4463-b70d-e4f893cdd471",
           "title": "US_260638_TC2: Validate Document Type filter behavior",
           "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC2_260638.spec.ts",
           "file": "\\test\\TC2_260638.spec.ts",
@@ -76,7 +76,7 @@
               "title": "should search and validate Document Type filter",
               "fullTitle": "US_260638_TC2: Validate Document Type filter behavior should search and validate Document Type filter",
               "timedOut": false,
-              "duration": 7340,
+              "duration": 5535,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -85,12 +85,12 @@
               "context": null,
               "code": "__awaiter(this, void 0, void 0, function* () {\n        yield bscPage.openHomePage();\n        yield searchPage.validateDocumentTypeFilterBehavior();\n    })",
               "err": {
-                "message": "ElementClickInterceptedError: element click intercepted: Element <button data-testid=\"accordion--show-button\" class=\"b-accordion \">...</button> is not clickable at point (1420, 564). Other element would receive the click: <div data-testid=\"c-loading\" class=\"Loading_c-loading__kQhvE\">...</div>\n  (Session info: chrome=143.0.7499.170)",
-                "estack": "ElementClickInterceptedError: element click intercepted: Element <button data-testid=\"accordion--show-button\" class=\"b-accordion \">...</button> is not clickable at point (1420, 564). Other element would receive the click: <div data-testid=\"c-loading\" class=\"Loading_c-loading__kQhvE\">...</div>\n  (Session info: chrome=143.0.7499.170)\n    at Object.throwDecodedError (node_modules\\selenium-webdriver\\lib\\error.js:523:15)\n    at parseHttpResponse (node_modules\\selenium-webdriver\\lib\\http.js:524:13)\n    at Executor.execute (node_modules\\selenium-webdriver\\lib\\http.js:456:28)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Driver.execute (node_modules\\selenium-webdriver\\lib\\webdriver.js:745:17)",
+                "message": "ElementClickInterceptedError: element click intercepted: Element is not clickable at point (661, 620)\n  (Session info: chrome=143.0.7499.170)",
+                "estack": "ElementClickInterceptedError: element click intercepted: Element is not clickable at point (661, 620)\n  (Session info: chrome=143.0.7499.170)\n    at Object.throwDecodedError (node_modules\\selenium-webdriver\\lib\\error.js:523:15)\n    at parseHttpResponse (node_modules\\selenium-webdriver\\lib\\http.js:524:13)\n    at Executor.execute (node_modules\\selenium-webdriver\\lib\\http.js:456:28)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Driver.execute (node_modules\\selenium-webdriver\\lib\\webdriver.js:745:17)",
                 "diff": null
               },
-              "uuid": "3160304b-839e-45ed-8478-8d5862cc9ffe",
-              "parentUUID": "be0a4f3c-58f0-45d2-b598-ccb778ad72c6",
+              "uuid": "85d71d55-70b8-4b3a-b80f-4f4a340cd678",
+              "parentUUID": "44ef674e-a5c8-4463-b70d-e4f893cdd471",
               "isHook": false,
               "skipped": false
             }
@@ -98,11 +98,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "3160304b-839e-45ed-8478-8d5862cc9ffe"
+            "85d71d55-70b8-4b3a-b80f-4f4a340cd678"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 7340,
+          "duration": 5535,
           "root": false,
           "rootEmpty": false,
           "_timeout": 60000

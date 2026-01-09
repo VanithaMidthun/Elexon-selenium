@@ -3,7 +3,7 @@ import { until, WebElement } from "selenium-webdriver";
 
 
  
-describe("Verify right hand functionality Collections", function () {
+describe("@smoke Verify right hand functionality Collections", function () {
   //this.timeout(30000);
 it("should validate navigation panel behavior", async () => {
     await bscPage.openHomePage();

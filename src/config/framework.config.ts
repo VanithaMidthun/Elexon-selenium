@@ -17,5 +17,5 @@ export const frameworkConfig = {
     long: 30000
   },
  
-  retries: 1
+  retries: 0
 };

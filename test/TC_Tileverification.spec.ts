@@ -3,7 +3,7 @@ import { Builder, WebDriver } from "selenium-webdriver";
 import { expect } from "chai";
 
  
-describe("BSC Homepage Tile Verification", function () {
+describe("@smoke BSC Homepage Tile Verification", function () {
   //this.timeout(40000);
  
   it("should show exactly 12 category tiles on the homepage", async () => {
