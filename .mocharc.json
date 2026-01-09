@@ -1,0 +1,8 @@
+{
+  "extension": ["ts"],
+  "require": ["ts-node/register", "./test/rootHooks.ts"],
+  "spec": "test/**/*.spec.ts",
+  "timeout": 60000,
+  "reporter": "mochawesome"
+  
+}
