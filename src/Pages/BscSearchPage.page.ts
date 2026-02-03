@@ -11,8 +11,8 @@ export class BscSearchResultsPage {
   roleFilterHeading = By.xpath("//h3[normalize-space()='Role']");
   roleFilterOptions = By.css("label[data-testid^='search-filter-role-label']"); 
   docTypeHeading = By.xpath("//button[contains(@class,'SearchFilter_headerButton__5gohN') and .//text()[contains(.,'Document Type')]]");
-  //docTypeCheckboxes = By.xpath("//h3[contains(text(), 'Document Type')]/ancestor::button/following-sibling::div//div[contains(@class, 'p-checkbox-box')]");
-  docTypeCheckboxes = By.xpath("//input[@type='checkbox' and contains(@data-testid, 'search-filter')]");
+  docTypeCheckboxes = By.xpath("//button[contains(@class,'SearchFilter_headerButton__5gohN') and .//text()[contains(.,'Document Type')]]/following-sibling::div//input[@type='checkbox' and contains(@data-testid, 'search-filter')]");
+  docTypeSection = By.xpath("//button[contains(@class,'SearchFilter_headerButton__5gohN') and .//text()[contains(.,'Document Type')]]/following-sibling::div");
   collapseChevron = By.xpath("//span[contains(@class, 'icon-chevron--up')]");
   expandChevron = By.xpath("//span[contains(@class, 'icon-chevron--down')]");
 
@@ -36,7 +36,18 @@ export class BscSearchResultsPage {
     }, t, "Loading overlay still visible");
   }
 
-  /* =========================
+  private async safeClick(el: WebElement) {
+  await this.waitForLoadingToFinish();
+  try {
+    await el.click();
+  } catch {
+    // Fallback if intercepted
+    await this.driver.executeScript("arguments[0].click();", el);
+  }
+}
+
+
+/* =========================
      SEARCH ACTIONS
   ========================== */
 
@@ -55,6 +66,7 @@ export class BscSearchResultsPage {
     await input.clear();
     await input.sendKeys(keyword);
     await this.driver.findElement(this.searchButton).click();
+    // Give longer timeout for search results to fully load
     await this.waitForLoadingToFinish(frameworkConfig.timeouts.pageLoad);
   }
 
@@ -69,7 +81,8 @@ export class BscSearchResultsPage {
       frameworkConfig.timeouts.explicit
     );
     await this.driver.wait(until.elementIsVisible(btn), frameworkConfig.timeouts.explicit);
-    await btn.click();
+    await this.driver.wait(until.elementIsEnabled(btn), frameworkConfig.timeouts.explicit);
+    await this.safeClick(btn);
     await this.waitForLoadingToFinish();
   }
 
@@ -99,17 +112,18 @@ export class BscSearchResultsPage {
     if (checkboxes.length <= index) {
       throw new Error(`Document Type checkbox index ${index} not found`);
     }
+    const box = checkboxes[index];
 
     await this.driver.wait(
-      until.elementIsVisible(checkboxes[index]),
+      until.elementIsVisible(box),
       frameworkConfig.timeouts.explicit
     );
     await this.driver.wait(
-      until.elementIsEnabled(checkboxes[index]),
+      until.elementIsEnabled(box),
       frameworkConfig.timeouts.explicit
     );
 
-    await checkboxes[index].click();
+    await this.safeClick(box);
     await this.waitForLoadingToFinish();
   }
 
@@ -130,13 +144,19 @@ export class BscSearchResultsPage {
     await this.driver.wait(until.elementIsVisible(header), frameworkConfig.timeouts.explicit);
     await this.driver.wait(until.elementIsEnabled(header), frameworkConfig.timeouts.explicit);
 
-    await header.click();
+    await this.safeClick(header);
     await this.waitForLoadingToFinish();
   }
 
   async isDocTypeCollapsed(): Promise<boolean> {
-    const checkboxes = await this.driver.findElements(this.docTypeCheckboxes);
-    return checkboxes.length === 0;
+    await this.waitForLoadingToFinish();
+    try {
+      const section = await this.driver.findElement(this.docTypeSection);
+      return !(await section.isDisplayed());
+    } catch {
+      // If the section element is not found, it's considered collapsed
+      return true;
+    }
   }
 
   /* =========================
@@ -145,7 +165,7 @@ export class BscSearchResultsPage {
   ========================== */
 
   async validateDocumentTypeFilterBehavior(): Promise<void> {
-    await this.search("ENERGY");
+    await this.search("panel");
     await this.openFilterBy();
 
     if (!(await this.isDocTypeHeaderVisible())) {

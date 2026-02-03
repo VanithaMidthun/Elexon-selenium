@@ -2,14 +2,14 @@
   "stats": {
     "suites": 1,
     "tests": 1,
-    "passes": 0,
+    "passes": 1,
     "pending": 0,
-    "failures": 1,
-    "start": "2026-01-09T14:22:17.798Z",
-    "end": "2026-01-09T14:22:34.153Z",
-    "duration": 16355,
+    "failures": 0,
+    "start": "2026-02-03T11:25:35.059Z",
+    "end": "2026-02-03T11:25:45.622Z",
+    "duration": 10563,
     "testsRegistered": 1,
-    "passPercent": 0,
+    "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "25e6ce1f-609a-45db-a7e4-32a62b2e4a2c",
+      "uuid": "d4722711-5e9c-4df4-b34c-6b3d90c9347b",
       "title": "",
       "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC2_260638.spec.ts",
       "file": "\\test\\TC2_260638.spec.ts",
@@ -27,7 +27,7 @@
           "title": "\"before each\" hook: beforeEach in \"{root}\"",
           "fullTitle": "\"before each\" hook: beforeEach in \"{root}\"",
           "timedOut": false,
-          "duration": 1314,
+          "duration": 1294,
           "state": null,
           "speed": null,
           "pass": false,
@@ -36,8 +36,8 @@
           "context": null,
           "code": "return __awaiter(this, void 0, void 0, function* () {\n    var _a, _b, _c;\n    // Apply retries (centralised)\n    (_a = this.currentTest) === null || _a === void 0 ? void 0 : _a.retries(framework_config_1.frameworkConfig.retries);\n    logger_1.Logger.info(`PID=${process.pid} | ENV=${process.env.ENV || \"qa\"} | BROWSER=${browser_config_1.browserConfig.name} | HEADLESS=${browser_config_1.browserConfig.headless} | TEST=${(_b = this.currentTest) === null || _b === void 0 ? void 0 : _b.title}`);\n    const browser = resolveBrowser();\n    let builder = new selenium_webdriver_1.Builder().forBrowser(browser);\n    /**\n     * -------- Chrome --------\n     */\n    if (browser === \"chrome\") {\n        const options = new chrome_1.default.Options();\n        if (browser_config_1.browserConfig.headless) {\n            options.addArguments(\"--headless=new\", \"--disable-gpu\", \"--window-size=1920,1080\");\n        }\n        builder.setChromeOptions(options);\n        builder.setChromeService(new chrome_1.default.ServiceBuilder(`${process.cwd()}/drivers/chromedriver.exe`));\n    }\n    /**\n     * -------- Firefox --------\n     */\n    if (browser === \"firefox\") {\n        const options = new firefox_1.default.Options();\n        if (browser_config_1.browserConfig.headless) {\n            options.addArguments(\"-headless\");\n        }\n        builder.setFirefoxOptions(options);\n        builder.setFirefoxService(new firefox_1.default.ServiceBuilder(`${process.cwd()}/drivers/geckodriver.exe`));\n    }\n    /**\n     * -------- Edge --------\n     */\n    if (browser === \"MicrosoftEdge\") {\n        const options = new edge_1.default.Options();\n        if (browser_config_1.browserConfig.headless) {\n            options.addArguments(\"--headless=new\", \"--window-size=1920,1080\");\n        }\n        builder.setEdgeOptions(options);\n        builder.setEdgeService(new edge_1.default.ServiceBuilder(`${process.cwd()}/drivers/msedgedriver.exe`));\n    }\n    // Build driver\n    global.driver = yield builder.build();\n    // Window & timeouts (centralised)\n    yield global.driver.manage().window().maximize();\n    yield global.driver.manage().setTimeouts({\n        implicit: 0,\n        pageLoad: framework_config_1.frameworkConfig.timeouts.pageLoad,\n        script: framework_config_1.frameworkConfig.timeouts.script\n    });\n    // Page objects (inject baseUrl)\n    global.bscPage = new BscPage_1.BscPage(global.driver, env_config_1.envConfig.baseUrl);\n    global.searchPage = new BscSearchPage_page_1.BscSearchResultsPage(global.driver);\n    global.Panel = new FilterPanel_1.FilterPanel(global.driver);\n    global.Collect = new Collections_1.Collections(global.driver);\n    // Ensure artifact folders exist\n    if (!fs_1.default.existsSync(\"screenshots\"))\n        fs_1.default.mkdirSync(\"screenshots\");\n    if (!fs_1.default.existsSync(\"videos\"))\n        fs_1.default.mkdirSync(\"videos\");\n    // Start video recording\n    recorder = new videoRecorder_1.VideoRecorder();\n    currentTestName =\n        ((_c = this.currentTest) === null || _c === void 0 ? void 0 : _c.title.replace(/[^a-zA-Z0-9]/g, \"_\")) || \"unknown_test\";\n    recorder.start(currentTestName, browser_config_1.browserConfig.name);\n});",
           "err": {},
-          "uuid": "9ddd7926-54ed-4241-bc69-51e4c2981cd4",
-          "parentUUID": "25e6ce1f-609a-45db-a7e4-32a62b2e4a2c",
+          "uuid": "8e3a6c6d-bbd4-4da5-92d6-728300e72057",
+          "parentUUID": "d4722711-5e9c-4df4-b34c-6b3d90c9347b",
           "isHook": true,
           "skipped": false
         }
@@ -47,17 +47,17 @@
           "title": "\"after each\" hook: afterEach in \"{root}\"",
           "fullTitle": "\"after each\" hook: afterEach in \"{root}\"",
           "timedOut": false,
-          "duration": 608,
+          "duration": 402,
           "state": null,
           "speed": null,
           "pass": false,
           "fail": false,
           "pending": false,
           "context": null,
-          "code": "return __awaiter(this, void 0, void 0, function* () {\n    var _a, _b, _c, _d;\n    const failed = ((_a = this.currentTest) === null || _a === void 0 ? void 0 : _a.state) === \"failed\";\n    yield recorder.stop();\n    if (failed && global.driver) {\n        logger_1.Logger.error(`Test failed: ${(_b = this.currentTest) === null || _b === void 0 ? void 0 : _b.title}`);\n        const screenshot = yield global.driver.takeScreenshot();\n        fs_1.default.writeFileSync(`screenshots/${currentTestName}.png`, screenshot, \"base64\");\n    }\n    else {\n        // Delete video for passed tests\n        const vid = recorder.getVideoPath();\n        if (vid && fs_1.default.existsSync(vid))\n            fs_1.default.unlinkSync(vid);\n    }\n    if (global.driver) {\n        yield global.driver.quit();\n    }\n    logger_1.Logger.info(`Finished test: ${(_c = this.currentTest) === null || _c === void 0 ? void 0 : _c.title} → ${(_d = this.currentTest) === null || _d === void 0 ? void 0 : _d.state}`);\n});",
+          "code": "return __awaiter(this, void 0, void 0, function* () {\n    var _a, _b, _c, _d;\n    const failed = ((_a = this.currentTest) === null || _a === void 0 ? void 0 : _a.state) === \"failed\";\n    if (recorder)\n        yield recorder.stop();\n    if (failed && global.driver) {\n        logger_1.Logger.error(`Test failed: ${(_b = this.currentTest) === null || _b === void 0 ? void 0 : _b.title}`);\n        const screenshot = yield global.driver.takeScreenshot();\n        fs_1.default.writeFileSync(`screenshots/${currentTestName}.png`, screenshot, \"base64\");\n    }\n    else {\n        // Delete video for passed tests\n        const vid = recorder.getVideoPath();\n        if (vid && fs_1.default.existsSync(vid))\n            fs_1.default.unlinkSync(vid);\n    }\n    if (global.driver) {\n        yield global.driver.quit();\n    }\n    logger_1.Logger.info(`Finished test: ${(_c = this.currentTest) === null || _c === void 0 ? void 0 : _c.title} → ${(_d = this.currentTest) === null || _d === void 0 ? void 0 : _d.state}`);\n});",
           "err": {},
-          "uuid": "2247a307-d3fc-426c-8c1c-5dbffd4905d2",
-          "parentUUID": "25e6ce1f-609a-45db-a7e4-32a62b2e4a2c",
+          "uuid": "aac02fe2-370f-4c45-918b-60d2ab38da76",
+          "parentUUID": "d4722711-5e9c-4df4-b34c-6b3d90c9347b",
           "isHook": true,
           "skipped": false
         }
@@ -65,7 +65,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "44ef674e-a5c8-4463-b70d-e4f893cdd471",
+          "uuid": "2790c10d-2046-45c6-8f43-df1e915797d5",
           "title": "US_260638_TC2: Validate Document Type filter behavior",
           "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC2_260638.spec.ts",
           "file": "\\test\\TC2_260638.spec.ts",
@@ -76,33 +76,29 @@
               "title": "should search and validate Document Type filter",
               "fullTitle": "US_260638_TC2: Validate Document Type filter behavior should search and validate Document Type filter",
               "timedOut": false,
-              "duration": 5535,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 8862,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
-              "code": "__awaiter(this, void 0, void 0, function* () {\n        yield bscPage.openHomePage();\n        yield searchPage.validateDocumentTypeFilterBehavior();\n    })",
-              "err": {
-                "message": "ElementClickInterceptedError: element click intercepted: Element is not clickable at point (661, 620)\n  (Session info: chrome=143.0.7499.170)",
-                "estack": "ElementClickInterceptedError: element click intercepted: Element is not clickable at point (661, 620)\n  (Session info: chrome=143.0.7499.170)\n    at Object.throwDecodedError (node_modules\\selenium-webdriver\\lib\\error.js:523:15)\n    at parseHttpResponse (node_modules\\selenium-webdriver\\lib\\http.js:524:13)\n    at Executor.execute (node_modules\\selenium-webdriver\\lib\\http.js:456:28)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Driver.execute (node_modules\\selenium-webdriver\\lib\\webdriver.js:745:17)",
-                "diff": null
-              },
-              "uuid": "85d71d55-70b8-4b3a-b80f-4f4a340cd678",
-              "parentUUID": "44ef674e-a5c8-4463-b70d-e4f893cdd471",
+              "code": "await bscPage.openHomePage();\n\nawait searchPage.validateDocumentTypeFilterBehavior()",
+              "err": {},
+              "uuid": "b5d564e6-8233-413b-ac1d-4de37c1c4b12",
+              "parentUUID": "2790c10d-2046-45c6-8f43-df1e915797d5",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "85d71d55-70b8-4b3a-b80f-4f4a340cd678"
+          "passes": [
+            "b5d564e6-8233-413b-ac1d-4de37c1c4b12"
           ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 5535,
+          "duration": 8862,
           "root": false,
           "rootEmpty": false,
           "_timeout": 60000

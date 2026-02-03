@@ -142,7 +142,7 @@ export const mochaHooks = {
   async afterEach(this: Mocha.Context) {
     const failed = this.currentTest?.state === "failed";
  
-    await recorder.stop();
+    if (recorder) await recorder.stop();
  
     if (failed && global.driver) {
       Logger.error(`Test failed: ${this.currentTest?.title}`);

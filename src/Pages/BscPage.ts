@@ -50,7 +50,7 @@ export class BscPage {
       );
  
       try {
-        await cookieBtn.click();
+        await this.clickSafely(cookieBtn);
       } catch {
         await this.driver.executeScript(
           "arguments[0].click();",
@@ -90,7 +90,7 @@ export class BscPage {
     );
  
     try {
-      await category.click();
+      await this.clickSafely(category);
     } catch {
       await this.driver.executeScript(
         "arguments[0].click();",
@@ -98,40 +98,42 @@ export class BscPage {
       );
     }
   }
+ async clickDocumentByName(docPartialName: string): Promise<void> {
+  await this.waitForLoadingToFinish();
  
-  async clickDocumentByName(docName: string): Promise<void> {
-    const docLocator = By.xpath(
-      `//a[normalize-space(text())='${docName}']`
-    );
+  const docLocator = By.xpath(
+     `//span[contains(@class,'DocumentCard_document-title')
+      and contains(normalize-space(.),'${docPartialName}')]/ancestor::div[contains(@class,'DocumentCard_document-link-area')]`
+  );
  
-    await this.waitForLoadingToFinish(frameworkConfig.timeouts.long);
+  await this.driver.wait(
+    until.elementsLocated(docLocator),
+    frameworkConfig.timeouts.long
+  );
  
-    const doc = await this.driver.wait(
-      until.elementLocated(docLocator),
-      frameworkConfig.timeouts.long
-    );
- 
-    await this.driver.wait(
-      until.elementIsVisible(doc),
-      frameworkConfig.timeouts.medium
-    );
- 
-    await this.driver.executeScript(
-      "arguments[0].scrollIntoView({ block: 'center' });",
-      doc
-    );
- 
-    try {
-      await doc.click();
-    } catch {
-      await this.driver.executeScript(
-        "arguments[0].click();",
-        doc
-      );
-    }
- 
-    await this.dismissLoginPopupIfPresent();
+  const docs = await this.driver.findElements(docLocator);
+  if (docs.length === 0) {
+    throw new Error(`Document '${docPartialName}' not found in results`);
   }
+ 
+  const doc = docs[0];
+ 
+  await this.driver.wait(
+    until.elementIsVisible(doc),
+    frameworkConfig.timeouts.explicit
+  );
+ 
+  await this.driver.executeScript(
+    "arguments[0].scrollIntoView({block:'center'});",
+    doc
+  );
+ 
+  try {
+    await this.clickSafely(doc);
+  } catch {
+    await this.driver.executeScript("arguments[0].click();", doc);
+  }
+}
  
   async getSearchInputPlaceholder(expected: string): Promise<void> {
     const input = await this.driver.wait(
@@ -275,21 +277,29 @@ export class BscPage {
      HELPERS
   ========================= */
  
-  private async waitForLoadingToFinish(timeoutMs: number): Promise<void> {
-    try {
-      await this.driver.wait(async () => {
-        const overlays = await this.driver.findElements(this.loadingOverlay);
-        if (overlays.length === 0) return true;
+  private async waitForLoadingToFinish(timeout = frameworkConfig.timeouts.pageLoad): Promise<void> {
+  try {
+    await this.driver.wait(async () => {
+      const overlays = await this.driver.findElements(this.loadingOverlay);
+ 
+      if (overlays.length === 0) return true;
+ 
+      for (const overlay of overlays) {
         try {
-          return !(await overlays[0].isDisplayed());
+          if (await overlay.isDisplayed()) {
+            return false; // still loading
+          }
         } catch {
+          // overlay detached → treat as gone
           return true;
         }
-      }, timeoutMs);
-    } catch {
-      // ignore
-    }
+      }
+      return true;
+    }, timeout);
+  } catch {
+    console.warn("⚠️ Loading overlay wait timed out – continuing");
   }
+}
  
   private async dismissLoginPopupIfPresent(): Promise<void> {
     try {
@@ -316,4 +326,19 @@ export class BscPage {
       // ignore
     }
   }
+  protected async clickSafely(element: WebElement): Promise<void> {
+  await this.waitForLoadingToFinish();
+ 
+  await this.driver.wait(until.elementIsVisible(element), frameworkConfig.timeouts.explicit);
+  await this.driver.wait(until.elementIsEnabled(element), frameworkConfig.timeouts.explicit);
+ 
+  try {
+    await element.click();
+  } catch {
+    // fallback for React animations / overlays
+    await this.driver.executeScript("arguments[0].click();", element);
+  }
+ 
+  await this.waitForLoadingToFinish();
+}
 }

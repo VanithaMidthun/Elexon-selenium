@@ -3,15 +3,15 @@ import { expect } from "chai";
 import { By, until } from "selenium-webdriver";
 
  
-describe("@smoke US 17875_TC_1: Verify 'Related Documents' display", function () {
+describe("US 17875_TC_1: Verify 'Related Documents' display", function () {
   //this.timeout(30000);
  
   it("should display Related Documents in the right-hand panel", async () => {
     await bscPage.openHomePage();
    
-    await bscPage.clickCategoryByName("Simple Guides");
+    await bscPage.clickCategoryByName("User Requirements Specifications");
     
-    await bscPage.clickDocumentByName("TC3");
+    await bscPage.clickDocumentByName("000_ watermarks s");
     console.log("clicked doc")
     await driver.wait(until.elementLocated(bscPage.rightPanel), 10000);
     console.log("Right panel is now visible")
