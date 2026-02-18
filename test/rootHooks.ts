@@ -8,6 +8,7 @@ import { BscPage } from "../src/Pages/BscPage";
 import { BscSearchResultsPage } from "../src/Pages/BscSearchPage.page";
 import { FilterPanel } from "../src/Pages/FilterPanel";
 import { Collections } from "../src/Pages/Collections";
+import { DocDetailPage } from "../src/Pages/DocDetailPage";       
  
 import { VideoRecorder } from "../src/utils/videoRecorder";
 import { Logger } from "../src/utils/logger";
@@ -25,6 +26,7 @@ declare global {
   var searchPage: BscSearchResultsPage;
   var Panel: FilterPanel;
   var Collect: Collections;
+  var docDetailPage: DocDetailPage;
 }
  
 /**
@@ -126,6 +128,7 @@ export const mochaHooks = {
     global.searchPage = new BscSearchResultsPage(global.driver);
     global.Panel = new FilterPanel(global.driver);
     global.Collect = new Collections(global.driver);
+    global.docDetailPage = new DocDetailPage(global.driver);
  
     // Ensure artifact folders exist
     if (!fs.existsSync("screenshots")) fs.mkdirSync("screenshots");

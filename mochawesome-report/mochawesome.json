@@ -1,15 +1,15 @@
 {
   "stats": {
-    "suites": 1,
-    "tests": 1,
-    "passes": 1,
+    "suites": 7,
+    "tests": 8,
+    "passes": 7,
     "pending": 0,
-    "failures": 0,
-    "start": "2026-02-03T11:25:35.059Z",
-    "end": "2026-02-03T11:25:45.622Z",
-    "duration": 10563,
-    "testsRegistered": 1,
-    "passPercent": 100,
+    "failures": 1,
+    "start": "2026-02-16T12:42:46.217Z",
+    "end": "2026-02-16T12:44:55.977Z",
+    "duration": 129760,
+    "testsRegistered": 8,
+    "passPercent": 87.5,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,26 +18,26 @@
   },
   "results": [
     {
-      "uuid": "d4722711-5e9c-4df4-b34c-6b3d90c9347b",
+      "uuid": "9f4d7f6b-ed7a-4ac3-b451-fc94ee127b89",
       "title": "",
-      "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC2_260638.spec.ts",
-      "file": "\\test\\TC2_260638.spec.ts",
+      "fullFile": "",
+      "file": "",
       "beforeHooks": [
         {
           "title": "\"before each\" hook: beforeEach in \"{root}\"",
           "fullTitle": "\"before each\" hook: beforeEach in \"{root}\"",
           "timedOut": false,
-          "duration": 1294,
+          "duration": 2545,
           "state": null,
           "speed": null,
           "pass": false,
           "fail": false,
           "pending": false,
           "context": null,
-          "code": "return __awaiter(this, void 0, void 0, function* () {\n    var _a, _b, _c;\n    // Apply retries (centralised)\n    (_a = this.currentTest) === null || _a === void 0 ? void 0 : _a.retries(framework_config_1.frameworkConfig.retries);\n    logger_1.Logger.info(`PID=${process.pid} | ENV=${process.env.ENV || \"qa\"} | BROWSER=${browser_config_1.browserConfig.name} | HEADLESS=${browser_config_1.browserConfig.headless} | TEST=${(_b = this.currentTest) === null || _b === void 0 ? void 0 : _b.title}`);\n    const browser = resolveBrowser();\n    let builder = new selenium_webdriver_1.Builder().forBrowser(browser);\n    /**\n     * -------- Chrome --------\n     */\n    if (browser === \"chrome\") {\n        const options = new chrome_1.default.Options();\n        if (browser_config_1.browserConfig.headless) {\n            options.addArguments(\"--headless=new\", \"--disable-gpu\", \"--window-size=1920,1080\");\n        }\n        builder.setChromeOptions(options);\n        builder.setChromeService(new chrome_1.default.ServiceBuilder(`${process.cwd()}/drivers/chromedriver.exe`));\n    }\n    /**\n     * -------- Firefox --------\n     */\n    if (browser === \"firefox\") {\n        const options = new firefox_1.default.Options();\n        if (browser_config_1.browserConfig.headless) {\n            options.addArguments(\"-headless\");\n        }\n        builder.setFirefoxOptions(options);\n        builder.setFirefoxService(new firefox_1.default.ServiceBuilder(`${process.cwd()}/drivers/geckodriver.exe`));\n    }\n    /**\n     * -------- Edge --------\n     */\n    if (browser === \"MicrosoftEdge\") {\n        const options = new edge_1.default.Options();\n        if (browser_config_1.browserConfig.headless) {\n            options.addArguments(\"--headless=new\", \"--window-size=1920,1080\");\n        }\n        builder.setEdgeOptions(options);\n        builder.setEdgeService(new edge_1.default.ServiceBuilder(`${process.cwd()}/drivers/msedgedriver.exe`));\n    }\n    // Build driver\n    global.driver = yield builder.build();\n    // Window & timeouts (centralised)\n    yield global.driver.manage().window().maximize();\n    yield global.driver.manage().setTimeouts({\n        implicit: 0,\n        pageLoad: framework_config_1.frameworkConfig.timeouts.pageLoad,\n        script: framework_config_1.frameworkConfig.timeouts.script\n    });\n    // Page objects (inject baseUrl)\n    global.bscPage = new BscPage_1.BscPage(global.driver, env_config_1.envConfig.baseUrl);\n    global.searchPage = new BscSearchPage_page_1.BscSearchResultsPage(global.driver);\n    global.Panel = new FilterPanel_1.FilterPanel(global.driver);\n    global.Collect = new Collections_1.Collections(global.driver);\n    // Ensure artifact folders exist\n    if (!fs_1.default.existsSync(\"screenshots\"))\n        fs_1.default.mkdirSync(\"screenshots\");\n    if (!fs_1.default.existsSync(\"videos\"))\n        fs_1.default.mkdirSync(\"videos\");\n    // Start video recording\n    recorder = new videoRecorder_1.VideoRecorder();\n    currentTestName =\n        ((_c = this.currentTest) === null || _c === void 0 ? void 0 : _c.title.replace(/[^a-zA-Z0-9]/g, \"_\")) || \"unknown_test\";\n    recorder.start(currentTestName, browser_config_1.browserConfig.name);\n});",
+          "code": "return __awaiter(this, void 0, void 0, function* () {\n    var _a, _b, _c;\n    // Apply retries (centralised)\n    (_a = this.currentTest) === null || _a === void 0 ? void 0 : _a.retries(framework_config_1.frameworkConfig.retries);\n    logger_1.Logger.info(`PID=${process.pid} | ENV=${process.env.ENV || \"qa\"} | BROWSER=${browser_config_1.browserConfig.name} | HEADLESS=${browser_config_1.browserConfig.headless} | TEST=${(_b = this.currentTest) === null || _b === void 0 ? void 0 : _b.title}`);\n    const browser = resolveBrowser();\n    let builder = new selenium_webdriver_1.Builder().forBrowser(browser);\n    /**\n     * -------- Chrome --------\n     */\n    if (browser === \"chrome\") {\n        const options = new chrome_1.default.Options();\n        if (browser_config_1.browserConfig.headless) {\n            options.addArguments(\"--headless=new\", \"--disable-gpu\", \"--window-size=1920,1080\");\n        }\n        builder.setChromeOptions(options);\n        builder.setChromeService(new chrome_1.default.ServiceBuilder(`${process.cwd()}/drivers/chromedriver.exe`));\n    }\n    /**\n     * -------- Firefox --------\n     */\n    if (browser === \"firefox\") {\n        const options = new firefox_1.default.Options();\n        if (browser_config_1.browserConfig.headless) {\n            options.addArguments(\"-headless\");\n        }\n        builder.setFirefoxOptions(options);\n        builder.setFirefoxService(new firefox_1.default.ServiceBuilder(`${process.cwd()}/drivers/geckodriver.exe`));\n    }\n    /**\n     * -------- Edge --------\n     */\n    if (browser === \"MicrosoftEdge\") {\n        const options = new edge_1.default.Options();\n        if (browser_config_1.browserConfig.headless) {\n            options.addArguments(\"--headless=new\", \"--window-size=1920,1080\");\n        }\n        builder.setEdgeOptions(options);\n        builder.setEdgeService(new edge_1.default.ServiceBuilder(`${process.cwd()}/drivers/msedgedriver.exe`));\n    }\n    // Build driver\n    global.driver = yield builder.build();\n    // Window & timeouts (centralised)\n    yield global.driver.manage().window().maximize();\n    yield global.driver.manage().setTimeouts({\n        implicit: 0,\n        pageLoad: framework_config_1.frameworkConfig.timeouts.pageLoad,\n        script: framework_config_1.frameworkConfig.timeouts.script\n    });\n    // Page objects (inject baseUrl)\n    global.bscPage = new BscPage_1.BscPage(global.driver, env_config_1.envConfig.baseUrl);\n    global.searchPage = new BscSearchPage_page_1.BscSearchResultsPage(global.driver);\n    global.Panel = new FilterPanel_1.FilterPanel(global.driver);\n    global.Collect = new Collections_1.Collections(global.driver);\n    global.docDetailPage = new DocDetailPage_1.DocDetailPage(global.driver);\n    // Ensure artifact folders exist\n    if (!fs_1.default.existsSync(\"screenshots\"))\n        fs_1.default.mkdirSync(\"screenshots\");\n    if (!fs_1.default.existsSync(\"videos\"))\n        fs_1.default.mkdirSync(\"videos\");\n    // Start video recording\n    recorder = new videoRecorder_1.VideoRecorder();\n    currentTestName =\n        ((_c = this.currentTest) === null || _c === void 0 ? void 0 : _c.title.replace(/[^a-zA-Z0-9]/g, \"_\")) || \"unknown_test\";\n    recorder.start(currentTestName, browser_config_1.browserConfig.name);\n});",
           "err": {},
-          "uuid": "8e3a6c6d-bbd4-4da5-92d6-728300e72057",
-          "parentUUID": "d4722711-5e9c-4df4-b34c-6b3d90c9347b",
+          "uuid": "efba8c84-0369-4e88-ae99-10fe3cff8e3e",
+          "parentUUID": "9f4d7f6b-ed7a-4ac3-b451-fc94ee127b89",
           "isHook": true,
           "skipped": false
         }
@@ -47,7 +47,7 @@
           "title": "\"after each\" hook: afterEach in \"{root}\"",
           "fullTitle": "\"after each\" hook: afterEach in \"{root}\"",
           "timedOut": false,
-          "duration": 402,
+          "duration": 1087,
           "state": null,
           "speed": null,
           "pass": false,
@@ -56,8 +56,8 @@
           "context": null,
           "code": "return __awaiter(this, void 0, void 0, function* () {\n    var _a, _b, _c, _d;\n    const failed = ((_a = this.currentTest) === null || _a === void 0 ? void 0 : _a.state) === \"failed\";\n    if (recorder)\n        yield recorder.stop();\n    if (failed && global.driver) {\n        logger_1.Logger.error(`Test failed: ${(_b = this.currentTest) === null || _b === void 0 ? void 0 : _b.title}`);\n        const screenshot = yield global.driver.takeScreenshot();\n        fs_1.default.writeFileSync(`screenshots/${currentTestName}.png`, screenshot, \"base64\");\n    }\n    else {\n        // Delete video for passed tests\n        const vid = recorder.getVideoPath();\n        if (vid && fs_1.default.existsSync(vid))\n            fs_1.default.unlinkSync(vid);\n    }\n    if (global.driver) {\n        yield global.driver.quit();\n    }\n    logger_1.Logger.info(`Finished test: ${(_c = this.currentTest) === null || _c === void 0 ? void 0 : _c.title} → ${(_d = this.currentTest) === null || _d === void 0 ? void 0 : _d.state}`);\n});",
           "err": {},
-          "uuid": "aac02fe2-370f-4c45-918b-60d2ab38da76",
-          "parentUUID": "d4722711-5e9c-4df4-b34c-6b3d90c9347b",
+          "uuid": "de6d4f87-65cb-4cfd-9886-0944f8355790",
+          "parentUUID": "9f4d7f6b-ed7a-4ac3-b451-fc94ee127b89",
           "isHook": true,
           "skipped": false
         }
@@ -65,7 +65,260 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "2790c10d-2046-45c6-8f43-df1e915797d5",
+          "uuid": "55121999-367f-44e4-8d69-1ed5da178866",
+          "title": "Verify search option",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC_226590.spec.ts",
+          "file": "\\test\\TC_226590.spec.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should verify document search option behavior",
+              "fullTitle": "Verify search option should verify document search option behavior",
+              "timedOut": false,
+              "duration": 11677,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await bscPage.openHomePage();\nawait bscPage.clickCategoryByName(\"BSC\");\n//await bscPage.clickDocumentByName(\"BSC Section B: The Panel\");\n// Radio button no longer available in updated UI design\nawait bscPage.getSearchInputPlaceholder(\"Search the Code Documents\");\n//await bscPage.isSearchButtonEnabled(false, \"before typing\");\nawait bscPage.typeInSearchInput(\"test search\");\n//await bscPage.isSearchButtonEnabled(true, \"after typing\");",
+              "err": {},
+              "uuid": "c9ccf57e-eb0d-46bb-8718-a6d48277ebb6",
+              "parentUUID": "55121999-367f-44e4-8d69-1ed5da178866",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c9ccf57e-eb0d-46bb-8718-a6d48277ebb6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 11677,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        },
+        {
+          "uuid": "7630db09-c0ce-4577-b5fd-d6e952ffa5c5",
+          "title": "US_274978_TC_1: Verify doc listing page layout and filter panel display",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC_274978.spec.ts",
+          "file": "\\test\\TC_274978.spec.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should search and validate Role filter",
+              "fullTitle": "US_274978_TC_1: Verify doc listing page layout and filter panel display should search and validate Role filter",
+              "timedOut": false,
+              "duration": 19092,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await bscPage.openHomePage();\n \nawait bscPage.clickCategoryByName(\"Simple Guides\");\n\nawait Panel.waitForLeftPanel();\n\nexpect(await Panel.isLeftPanelVisible()).to.be.true;\n\n//expect(await Panel.getLeftPanelBgColor()).to.include(\"rgb(246, 245, 243)\");\n \nexpect(await Panel.headingsAreVisible()).to.be.true;\n \nawait Panel.expandImplementationSection();\nconst checkboxes               = await Panel.getImplementationCheckboxes();\nexpect(checkboxes.length).to.be.greaterThan(0);\n\n// Test clicking a checkbox and automatic results update\nif (checkboxes.length > 0) {\n  await Panel.clickCheckboxAndWaitForResults(checkboxes[0]);\n  console.log(\"Successfully clicked checkbox and waited for automatic results update\");\n}\n\nexpect(await Panel.filterButtonsAreVisible()).to.be.true;\n\nawait Panel.validateToggleBehavior(); // Handles collapse/expand flow internally",
+              "err": {},
+              "uuid": "ba1fcea8-94c6-4f4a-bb60-87a26cfa3b26",
+              "parentUUID": "7630db09-c0ce-4577-b5fd-d6e952ffa5c5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ba1fcea8-94c6-4f4a-bb60-87a26cfa3b26"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 19092,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        },
+        {
+          "uuid": "0b59bc20-4402-4623-adcb-9df4364f0635",
+          "title": "BSC Homepage Tile Verification",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC_Tileverification.spec.ts",
+          "file": "\\test\\TC_Tileverification.spec.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should show exactly 12 category tiles on the homepage",
+              "fullTitle": "BSC Homepage Tile Verification should show exactly 12 category tiles on the homepage",
+              "timedOut": false,
+              "duration": 6795,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await bscPage.openHomePage();\nconst tileCount = await bscPage.getCategoryTileCount();\nconsole.log(\"Tile count:\", tileCount);\nexpect(tileCount).to.equal(12, \"Expected exactly 12 category tiles\");",
+              "err": {},
+              "uuid": "84a5de8e-6c63-4e4a-8fbf-c7acee5a25aa",
+              "parentUUID": "0b59bc20-4402-4623-adcb-9df4364f0635",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should click each category tile and verify the title",
+              "fullTitle": "BSC Homepage Tile Verification should click each category tile and verify the title",
+              "timedOut": false,
+              "duration": 129,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const tileElements = await bscPage.getCategoryTileElements();\n \nfor (let i = 0; i < tileElements.length; i++) {\n  const refreshedTiles = await bscPage.getCategoryTileElements(); // Avoid stale element\n  const tileText = await bscPage.getTileText(refreshedTiles[i]);\n \n  await bscPage.clickTile(refreshedTiles[i]);\n  await driver.sleep(2000);\n \n  const pageTitle = await bscPage.getLandingPageHeaderText();\n  console.log(`Tile Text: \"${tileText}\" | Page Title: \"${pageTitle}\"`);\n expect(\ntileText.trim().toLowerCase()\n).to.equal(\npageTitle.trim().toLowerCase()\n);\n  await bscPage.goBackToHomePage();\n}",
+              "err": {},
+              "uuid": "b07002b7-e081-4829-837a-a18bf5b52d48",
+              "parentUUID": "0b59bc20-4402-4623-adcb-9df4364f0635",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "84a5de8e-6c63-4e4a-8fbf-c7acee5a25aa",
+            "b07002b7-e081-4829-837a-a18bf5b52d48"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6924,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        },
+        {
+          "uuid": "3e301830-9fb2-4c6a-8cbc-3846306857e2",
+          "title": "US 17875_TC_1: Verify 'Related Documents' display",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC1_17875.spec.ts",
+          "file": "\\test\\TC1_17875.spec.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should display Related Documents in the right-hand panel",
+              "fullTitle": "US 17875_TC_1: Verify 'Related Documents' display should display Related Documents in the right-hand panel",
+              "timedOut": false,
+              "duration": 12633,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await bscPage.openHomePage();\n   \nawait bscPage.clickCategoryByName(\"User Requirements Specifications\");\n\nawait bscPage.clickDocumentByName(\"000_ watermarks s\");\nconsole.log(\"clicked doc\")\nawait driver.wait(until.elementLocated(bscPage.rightPanel), 10000);\nconsole.log(\"Right panel is now visible\")\nexpect(await bscPage.isRightPanelDisplayed()).to.be.true;\nexpect(await bscPage.isRelatedDocumentsVisible()).to.be.true;\nawait bscPage.clickRelatedDocuments();\n   // const bgColor = await bscPage.getRelatedDocumentsButtonBackground();\n   // console.log(\"Background color of Related Documents button:\", bgColor);\n   // expect(bgColor).to.equal(\"rgb(33, 219, 173)\");",
+              "err": {},
+              "uuid": "702efd68-1aaf-46b4-8fa0-813fe6783977",
+              "parentUUID": "3e301830-9fb2-4c6a-8cbc-3846306857e2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "702efd68-1aaf-46b4-8fa0-813fe6783977"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 12633,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        },
+        {
+          "uuid": "63007c70-0e05-43ec-8dc7-98de78808cde",
+          "title": "Verify right hand functionality Collections",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC1_268254.spec.ts",
+          "file": "\\test\\TC1_268254.spec.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should validate navigation panel behavior",
+              "fullTitle": "Verify right hand functionality Collections should validate navigation panel behavior",
+              "timedOut": false,
+              "duration": 23828,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await bscPage.openHomePage();\nawait bscPage.clickCategoryByName(\"Simple Guides\");\nawait bscPage.clickDocumentByName(\"Mam 10\");\nawait Collect.validateAllCategoriesDisplayed();",
+              "err": {},
+              "uuid": "81a43a20-abf3-4cd7-9b1c-ee8391466d76",
+              "parentUUID": "63007c70-0e05-43ec-8dc7-98de78808cde",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "81a43a20-abf3-4cd7-9b1c-ee8391466d76"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 23828,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        },
+        {
+          "uuid": "d39d7e3d-a5d2-432c-8a1e-17a20a5d7b62",
+          "title": "US 287603 - Verify toggles are moved to the top",
+          "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC1_287753.spec.ts",
+          "file": "\\test\\TC1_287753.spec.ts",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "TC1: Toggles should appear in top header",
+              "fullTitle": "US 287603 - Verify toggles are moved to the top TC1: Toggles should appear in top header",
+              "timedOut": false,
+              "duration": 13080,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "__awaiter(this, void 0, void 0, function* () {\n        logger_1.Logger.info(\"Opening BSC home page\");\n        yield global.bscPage.openHomePage();\n        logger_1.Logger.info(\"Selecting category\");\n        yield global.bscPage.clickCategoryByName(\"Guidance Notes\");\n        logger_1.Logger.info(\"Opening document\");\n        yield global.bscPage.clickDocumentByName(\"Doc2\");\n        // ---- Top Header Assertions ----\n        (0, chai_1.expect)(yield global.docDetailPage.isDefinedTermsToggleVisibleInTop(), \"Defined Terms toggle should be visible in top header\").to.be.true;\n        (0, chai_1.expect)(yield global.docDetailPage.isCrossReferencesToggleVisibleInTop(), \"Cross-references toggle should be visible in top header\").to.be.true;\n    })",
+              "err": {},
+              "uuid": "cc88a64f-3077-43c4-9ae3-5515e13ece27",
+              "parentUUID": "d39d7e3d-a5d2-432c-8a1e-17a20a5d7b62",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "cc88a64f-3077-43c4-9ae3-5515e13ece27"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 13080,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 120000
+        },
+        {
+          "uuid": "e63cf021-13d7-495e-b571-9b714c5532f6",
           "title": "US_260638_TC2: Validate Document Type filter behavior",
           "fullFile": "C:\\Elexon\\selenium-ts-tests\\test\\TC2_260638.spec.ts",
           "file": "\\test\\TC2_260638.spec.ts",
@@ -76,29 +329,33 @@
               "title": "should search and validate Document Type filter",
               "fullTitle": "US_260638_TC2: Validate Document Type filter behavior should search and validate Document Type filter",
               "timedOut": false,
-              "duration": 8862,
-              "state": "passed",
-              "speed": "slow",
-              "pass": true,
-              "fail": false,
+              "duration": 15212,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
               "pending": false,
               "context": null,
               "code": "await bscPage.openHomePage();\n\nawait searchPage.validateDocumentTypeFilterBehavior()",
-              "err": {},
-              "uuid": "b5d564e6-8233-413b-ac1d-4de37c1c4b12",
-              "parentUUID": "2790c10d-2046-45c6-8f43-df1e915797d5",
+              "err": {
+                "message": "NoSuchElementError: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//button[contains(@class,'SearchFilter_headerButton__5gohN') and .//text()[contains(.,'Document Type')]]\"}\n  (Session info: chrome=144.0.7559.133)",
+                "estack": "NoSuchElementError: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//button[contains(@class,'SearchFilter_headerButton__5gohN') and .//text()[contains(.,'Document Type')]]\"}\n  (Session info: chrome=144.0.7559.133)\n    at Object.throwDecodedError (node_modules\\selenium-webdriver\\lib\\error.js:523:15)\n    at parseHttpResponse (node_modules\\selenium-webdriver\\lib\\http.js:524:13)\n    at Executor.execute (node_modules\\selenium-webdriver\\lib\\http.js:456:28)\n    at processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async Driver.execute (node_modules\\selenium-webdriver\\lib\\webdriver.js:745:17)\n    at async toWireValue (node_modules\\selenium-webdriver\\lib\\webdriver.js:149:15)\n    at async C:\\Elexon\\selenium-ts-tests\\node_modules\\selenium-webdriver\\lib\\webdriver.js:195:16\n    at async forEachKey (node_modules\\selenium-webdriver\\lib\\webdriver.js:189:9)\n    at async convertKeys (node_modules\\selenium-webdriver\\lib\\webdriver.js:194:3)\n    at async Driver.execute (node_modules\\selenium-webdriver\\lib\\webdriver.js:743:22)",
+                "diff": null
+              },
+              "uuid": "d432a973-de4c-4da2-9c9b-e89613ad8552",
+              "parentUUID": "e63cf021-13d7-495e-b571-9b714c5532f6",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [
-            "b5d564e6-8233-413b-ac1d-4de37c1c4b12"
+          "passes": [],
+          "failures": [
+            "d432a973-de4c-4da2-9c9b-e89613ad8552"
           ],
-          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 8862,
+          "duration": 15212,
           "root": false,
           "rootEmpty": false,
           "_timeout": 60000
